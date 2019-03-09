@@ -1,0 +1,45 @@
+%p#notice= notice
+
+%p
+  %strong Name:
+  = @usable_card.name
+%p
+  %strong Legion:
+  = @usable_card.legion
+%p
+  %strong League:
+  = @usable_card.tier
+%p
+  %strong Type:
+  = @usable_card.card_type
+%p
+  %strong Stage:
+  = @usable_card.stage
+%p
+  %strong Cooldown:
+  = @usable_card.cooldown
+%p
+  %strong Cost:
+  = @usable_card.cost
+%p
+  %strong Squad Size:
+  = @usable_card.squad_size
+%p
+  %strong Health:
+  = @usable_card.health
+%p
+  %strong Armor:
+  = @usable_card.armor
+%p
+  %strong Range:
+  = @usable_card.range
+%p
+  %strong Damage:
+  = @usable_card.damage
+%p
+  %strong Attack Speed:
+  = @usable_card.attack_speed
+
+= link_to 'Edit', edit_usable_card_path(@usable_card)
+
+= link_to 'Back', usable_cards_path

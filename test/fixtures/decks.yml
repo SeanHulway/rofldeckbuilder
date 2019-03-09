@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  legion1: MyString
+  legion2: MyString
+  tier: MyString
+  description: 
+
+two:
+  legion1: MyString
+  legion2: MyString
+  tier: MyString
+  description: 

@@ -1,0 +1,137 @@
+:css
+  .header-stat{
+    font-weight: bold;
+  }
+  .card-stats{
+    margin-left: 10px;
+  }
+- if !card.blank?
+  .card-stats
+    %table
+      %tbody
+        %tr
+          %td
+            .header-stat Legion:
+          %td
+            .card-stat.card-legion= card_for_stats(card).legion
+        %tr
+          %td
+            .header-stat Type:
+          %td
+            .card-stat.card-type= card_for_stats(card).card_type
+        %tr
+          %td
+            .header-stat Base League:
+          %td
+            .card-stat.card-league= card_for_stats(card).tier
+        %tr
+          %td
+            .header-stat Stage:
+          %td
+            .card-stat.card-stage= card_for_stats(card).stage
+        %tr
+          %td
+            .header-stat Cost:
+          %td
+            .card-stat.card-cost= card_for_stats(card).cost
+        %tr
+          %td
+            .header-stat Squad Size:
+          %td
+            .card-stat.card-squad-size= card_for_stats(card).squad_size
+        %tr
+          %td
+            .header-stat Cooldown:
+          %td
+            .card-stat.card-cooldown= card_for_stats(card).cooldown
+        %tr
+          %td
+            .header-stat Health:
+          %td
+            .card-stat.card-health= card_for_stats(card).health
+        %tr
+          %td
+            .header-stat Armor:
+          %td
+            .card-stat.card-armor= card_for_stats(card).armor
+        %tr
+          %td
+            .header-stat Range:
+          %td
+            .card-stat.card-range= card_for_stats(card).range
+        %tr
+          %td
+            .header-stat Damage:
+          %td
+            .card-stat.card-damage=card_for_stats(card).damage
+        %tr
+          %td
+            .header-stat Attack Speed:
+          %td
+            .card-stat.card-attack-speed= card_for_stats(card).attack_speed
+
+- else
+  .card-stats{style: 'display: none;'}
+    %table
+      %tbody
+        %tr
+          %td
+            .header-stat Legion:
+          %td
+            .card-stat.card-legion
+        %tr
+          %td
+            .header-stat Type:
+          %td
+            .card-stat.card-type
+        %tr
+          %td
+            .header-stat Base League:
+          %td
+            .card-stat.card-league
+        %tr
+          %td
+            .header-stat Stage:
+          %td
+            .card-stat.card-stage
+        %tr
+          %td
+            .header-stat Cost:
+          %td
+            .card-stat.card-cost
+        %tr
+          %td
+            .header-stat Squad Size:
+          %td
+            .card-stat.card-squad-size
+        %tr
+          %td
+            .header-stat Cooldown:
+          %td
+            .card-stat.card-cooldown
+        %tr
+          %td
+            .header-stat Health:
+          %td
+            .card-stat.card-health
+        %tr
+          %td
+            .header-stat Armor:
+          %td
+            .card-stat.card-armor
+        %tr
+          %td
+            .header-stat Range:
+          %td
+            .card-stat.card-range
+        %tr
+          %td
+            .header-stat Damage:
+          %td
+            .card-stat.card-damage
+        %tr
+          %td
+            .header-stat Attack Speed:
+          %td
+            .card-stat.card-attack-speed
+    

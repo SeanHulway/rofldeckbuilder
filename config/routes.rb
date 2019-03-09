@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :usable_cards
+  resources :cards
+  resources :decks
+
+  root "decks#index"
+
+  get 'decks/:id/refresh_cards', to: 'decks#refresh_cards'
 end

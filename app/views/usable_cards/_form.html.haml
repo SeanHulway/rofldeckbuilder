@@ -1,0 +1,28 @@
+= simple_form_for(@usable_card) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  .form-inputs
+    = f.input :image_url
+    = f.input :name
+    = f.input :legion
+    = f.input :tier
+    = f.input :card_type
+    = f.input :stage
+    = f.input :cooldown
+    = f.input :cost
+    = f.input :squad_size
+    = f.input :health
+    = f.input :armor
+    = f.input :range
+    = f.input :damage
+    = f.input :attack_speed
+
+    %h3 Abilities
+    #abilities
+      = f.simple_fields_for :abilities do |ability|
+        = render 'ability_fields', f: ability
+      .links
+        = link_to_add_association 'add ability', f, :abilities
+  .form-actions
+    = f.button :submit
+

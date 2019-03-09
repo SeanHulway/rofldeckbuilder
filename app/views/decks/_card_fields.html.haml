@@ -1,0 +1,57 @@
+:css
+  .cards{
+    margin: 10px 0;
+    text-align: center;
+  }
+  .card{
+    display: block;
+    border: 2px solid black;
+    padding: 10px;
+  }
+  .card-image:hover{
+    cursor: pointer;
+  }
+  .card-stats{
+
+  }
+
+.nested-fields
+  .cards
+    .card
+      .card-choice
+        .card-chosen= f.input :name, label: false, collection: @cards_by_name, input_html: { class: 'ui fluid search dropdown'}
+        %img.card-image#card-image{src: @image_url, alt: 'Archers', style: 'max-width: 75%; height: auto;'}
+
+        .ui.special.popup
+          .header Abilities
+          .sub.header Predator: Stunned
+          %p
+            Deals 200% damage to stunned units and 150% to units affected by other status effects.
+          .sub.header Deathcry: Last Try
+          %p
+            Whenever this unit dies, it shoots an arrow at a random nearby enemy.
+
+      .card-stats{style: 'display: none;'}
+        .ui.list
+          .item
+            .header Type
+            .card-type
+          .item
+            .header Base League
+            .card-league
+          .item
+            .header Squad Size
+            .card-squad-size
+          .item
+            .header Health
+            .card-health
+
+
+
+:javascript
+  $('select.dropdown').dropdown();
+
+  $('.card-image')
+  .popup({
+    inline: true
+  });

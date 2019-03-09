@@ -1,0 +1,98 @@
+:css
+  .cards{
+    margin: 10px 0;
+  }
+  .card{
+    text-align: center;
+    display: block;
+    border: 2px solid black;
+    padding: 10px;
+  }
+  .card-image:hover{
+    cursor: pointer;
+  }
+
+.ui.stackable.column.grid
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_1, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_1
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_2, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_2
+        
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_3, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_3
+        
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_4, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_4
+        
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_5, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_5
+        
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_6, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_6
+        
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_7, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_7
+        
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_8, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_8
+        
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_9, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_9
+        
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_10, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_10
+        
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_11, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_11
+        
+  .four.wide.column
+    .cards
+      .card
+        .card-choice
+          .card-chosen= f.input :card_12, label: false, collection: card_selection(@deck, legion1, legion2, league), input_html: { class: 'ui fluid search dropdown'}
+          = render 'pop_up', card: @deck.card_12
+        

@@ -1,0 +1,5 @@
+%h1 Editing Deck
+= render 'form', deck: @deck, locals: {legion1: @deck.legion1, legion2: @deck.legion2, league: @deck.tier}
+= link_to 'Show', @deck
+
+= link_to 'Back', decks_path

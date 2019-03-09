@@ -1,0 +1,146 @@
+#all-cards
+  .ui.basic.segment
+    .ui.form
+      = simple_form_for @deck, remote: true do |f|
+        .inline.fields
+          .field
+            - if !params[:tier].blank?
+              .legion-chosen= f.input :tier, label: "League", collection: ['Stone', 'Bronze', 'Silver', 'Gold'], selected: params[:tier], input_html: { id: 'league', class: 'ui search dropdown'}
+            -else
+              .legion-chosen= f.input :tier, label: "League", collection: ['Stone', 'Bronze', 'Silver', 'Gold'], input_html: { id: 'league',class: 'ui search dropdown'}
+          .field
+            - if !params[:legion1].blank?
+              .legion-chosen= f.input :legion1, label: "Legion 1", collection: ['White', 'Green', 'Black', 'Blue'], selected: params[:legion1], input_html: { id: 'legion1', class: 'ui search dropdown'}
+            - else
+              .legion-chosen= f.input :legion1, label: "Legion 1", collection: ['White', 'Green', 'Black', 'Blue'], input_html: { id: 'legion1', class: 'ui search dropdown'}
+          .field
+            - if !params[:legion2].blank?
+              .legion-chosen= f.input :legion2, label: "Legion 2", collection: ['White', 'Green', 'Black', 'Blue'], selected: params[:legion2], input_html: { id: 'legion2', class: 'ui search dropdown'}
+            - else
+              .legion-chosen= f.input :legion2, label: "Legion 2", collection: ['White', 'Green', 'Black', 'Blue'], input_html: { id: 'legion2', class: 'ui search dropdown'}
+        .ui.basic.divider
+        .ui.header
+          Cards
+        
+        = render 'cards', f: f, legion1: params[:legion1], legion2: params[:legion2], league: params[:tier]
+
+        .field
+          = f.input :description, label: 'Description:'
+
+        .form-actions
+          = f.button :submit, class: 'ui right floated primary button'
+
+:javascript
+  $('select.dropdown').dropdown();
+  $('.ui.radio.checkbox').checkbox();
+
+  $('select.dropdown').dropdown();
+
+  var resizePopup = function(){$('.ui.popup').css('max-height', $(window).height());};
+
+  $(window).resize(function(e){
+      resizePopup();
+  });
+
+  $('.card-image')
+  .popup({
+    inline: true,
+    lastResort: 'bottom right',
+    onShow: function(){
+        resizePopup();
+    },
+  });
+
+  $(document).ready(function(){
+    $('.card-chosen').change(function(){
+      changeCard($(this));
+    });
+
+    $('.legion-chosen').change(function(){
+      var legionChoice1 = $('#legion1').find(":selected").val();
+      var legionChoice2 = $('#legion2').find(":selected").val();
+      var leagueChoice = $('#league').find(":selected").val();
+
+      changeCardChoices(legionChoice1, legionChoice2, leagueChoice);
+    });
+
+  });
+
+  function changeCardChoices(legionChoice1, legionChoice2, leagueChoice){
+
+    var id = "#{@deck.id}"
+    var url = '../' + id + '/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice
+
+    if(window.location.href.indexOf("new") > -1){
+      url = 'decks/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice
+      console.log('new')
+    }
+
+    $.ajax({
+      url: url,
+    });
+  }
+
+
+
+  function changeCard(thisCard){
+    var cardStats = thisCard.parent().parent().find('.card-stats');
+    var cardChoice = thisCard.find(":selected").val();
+
+    var cardImage = thisCard.next();
+
+    thisStat = thisCard.parent().parent()
+
+    var cardLegion = thisStat.find('.card-legion');
+    var cardType = thisStat.find('.card-type');
+    var cardLeague = thisStat.find('.card-league');
+    var cardStage = thisStat.find('.card-stage');
+    var cardCost = thisStat.find('.card-cost');
+    var cardSquadSize = thisStat.find('.card-squad-size');
+    var cardCooldown = thisStat.find('.card-cooldown');
+    var cardHealth = thisStat.find('.card-health');
+    var cardArmor = thisStat.find('.card-armor');
+    var cardRange = thisStat.find('.card-range');
+    var cardDamage = thisStat.find('.card-damage');
+    var cardAttackSpeed = thisStat.find('.card-attack-speed');
+
+    $(cardStats).show();
+
+    var cardData = {image_url:"image_url",
+                    legion:"legion",
+                    card_type:"card_type",
+                    tier:"tier",
+                    stage:"stage",
+                    cost:"cost",
+                    squad_size:"squad_size",
+                    cooldown:"cooldown",
+                    health:"health",
+                    armor:"armor",
+                    range:"range",
+                    damage:"damage",
+                    attack_speed:"attack_speed"}
+
+    $.ajax({
+      type: "GET",
+      url: "../../usable_cards/" + cardChoice,
+      dataType: "json",
+      data: cardData,
+      success:function(data){
+        var data = data;
+
+        $(cardImage).attr("src", data.image_url);
+        $(cardLegion).html(data.legion);
+        $(cardType).html(data.card_type);
+        $(cardLeague).html(data.tier);
+        $(cardStage).html(data.stage);
+        $(cardCost).html(data.cost);
+        $(cardSquadSize).html(data.squad_size);
+        $(cardCooldown).html(data.cooldown);
+        $(cardHealth).html(data.health);
+        $(cardArmor).html(data.armor);
+        $(cardRange).html(data.range);
+        $(cardDamage).html(data.damage);
+        $(cardAttackSpeed).html(data.attack_speed);
+      }
+    });
+  };

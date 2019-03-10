@@ -74,7 +74,7 @@ class DecksController < ApplicationController
     @league = params[:league]
 
     if Deck.find_by_id(params[:id])
-      @deck = Deck.find_by_id(params[:id])
+      set_deck
     else
       @deck = Deck.new
     end

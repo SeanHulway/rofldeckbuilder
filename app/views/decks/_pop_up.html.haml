@@ -5,6 +5,10 @@
     - @usable_cards.find_by(id: card).abilities.each do |ability|      
       .sub.header= ability.name
       %p= ability.description
+    .header
     = render 'card_stats', card: card
 - else
   %img.card-image#card-image{src: image_url, style: 'max-width: 75%; height: auto;'}
+  .ui.special.popup
+    .header Skills
+    = render 'card_stats', card: card

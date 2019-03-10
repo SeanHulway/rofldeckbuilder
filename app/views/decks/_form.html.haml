@@ -18,10 +18,9 @@
               .legion-chosen= f.input :legion2, label: "Legion 2", collection: ['White', 'Green', 'Black', 'Blue'], selected: params[:legion2], input_html: { id: 'legion2', class: 'ui search dropdown'}
             - else
               .legion-chosen= f.input :legion2, label: "Legion 2", collection: ['White', 'Green', 'Black', 'Blue'], input_html: { id: 'legion2', class: 'ui search dropdown'}
-        .ui.basic.divider
+
         .ui.header
-          Cards
-        
+          Cards   
         = render 'cards', f: f, legion1: params[:legion1], legion2: params[:legion2], league: params[:tier]
 
         .field
@@ -52,6 +51,15 @@
   });
 
   $(document).ready(function(){
+    $('#add-cards-button').click(function(){
+      $('#show-cards').toggle();
+      $('#show-legions').toggle();
+    });
+    $('#change-legion-button').click(function(){
+      $('#show-cards').toggle();
+      $('#show-legions').toggle();
+    });
+
     $('.card-chosen').change(function(){
       changeCard($(this));
     });
@@ -73,15 +81,28 @@
 
     if(window.location.href.indexOf("new") > -1){
       url = 'decks/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice
-      console.log('new')
     }
-
+ 
     $.ajax({
       url: url,
+      success:function(){
+        changeImage($('.card-chosen'));
+      }
     });
   }
 
+  function changeImage(thisCard){
+    $( thisCard).each(function() {
+      var cardChoice = $(this).find(":selected").val();
+      console.log(cardChoice)
 
+      if(cardChoice == ''){
+        var cardImage = $(this).next();
+        
+        cardImage.attr("src", "https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/c/c1/Bg_white.png");
+      }
+    });
+  }
 
   function changeCard(thisCard){
     var cardStats = thisCard.parent().parent().find('.card-stats');

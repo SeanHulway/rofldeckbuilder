@@ -33,7 +33,9 @@ gem 'haml', '~> 5.0', '>= 5.0.4'
 
 gem 'jquery-rails'
 
-gem 'cocoon'
+gem 'kaminari'
+
+# gem 'cocoon'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_10_200945) do
+ActiveRecord::Schema.define(version: 2019_03_11_035346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,18 +20,6 @@ ActiveRecord::Schema.define(version: 2019_03_10_200945) do
     t.text "description"
     t.bigint "usable_card_id"
     t.index ["usable_card_id"], name: "index_abilities_on_usable_card_id"
-  end
-
-  create_table "cards", force: :cascade do |t|
-    t.string "name"
-    t.string "legion"
-    t.string "tier"
-    t.string "type"
-    t.integer "stage"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "deck_id"
-    t.index ["deck_id"], name: "index_cards_on_deck_id"
   end
 
   create_table "decks", force: :cascade do |t|
@@ -54,6 +42,7 @@ ActiveRecord::Schema.define(version: 2019_03_10_200945) do
     t.string "card_10"
     t.string "card_11"
     t.string "card_12"
+    t.integer "user_id"
   end
 
   create_table "usable_cards", force: :cascade do |t|
@@ -85,11 +74,12 @@ ActiveRecord::Schema.define(version: 2019_03_10_200945) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "abilities", "usable_cards"
-  add_foreign_key "cards", "decks"
   add_foreign_key "usable_cards", "decks"
 end

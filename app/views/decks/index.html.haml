@@ -1,0 +1,43 @@
+:css
+  .deck-link:hover{
+    cursor: pointer;
+  }
+.ui.segment
+  %table.ui.very.basic.selectable.single.line.table
+    %thead
+      %tr
+        %th Name
+        %th League
+        %th Legion
+        %th Legion
+    %tbody
+      - @decks.each do |deck|
+        %tr.deck-link{"data-link" => "#{deck_path(deck.id)}"}
+          %td= deck.name
+          %td= deck.tier
+          %td= deck.legion1
+          %td= deck.legion2
+          %td.right.aligned
+            %img{src: has_image(deck.card_1), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_2), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_3), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_4), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_5), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_6), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_5), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_8), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_9), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_10), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_11), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_12), style: 'max-width: 5%; height: auto;'}
+
+.ui.basic.center.aligned.segment
+  = paginate @decks
+/ %td= link_to 'Show', deck
+/ %td= link_to 'Edit', edit_deck_path(deck)
+/ %td= link_to 'Destroy', deck, method: :delete, data: { confirm: 'Are you sure?' }
+
+:javascript
+  $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })

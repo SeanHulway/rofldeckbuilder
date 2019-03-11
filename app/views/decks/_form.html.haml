@@ -2,6 +2,8 @@
   .ui.basic.segment
     .ui.form
       = simple_form_for @deck, remote: true do |f|
+
+        = f.input :name
         .inline.fields
           .field
             - if !params[:tier].blank?

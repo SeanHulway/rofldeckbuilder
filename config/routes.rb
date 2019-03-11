@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   resources :usable_cards
-  resources :cards
   resources :decks
+
+  resources :users
+  get 'users/:id' => 'users#show'
 
   root "decks#index"
 

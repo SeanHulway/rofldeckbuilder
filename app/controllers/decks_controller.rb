@@ -1,11 +1,13 @@
 class DecksController < ApplicationController
   before_action :set_deck, only: [:show, :edit, :update, :destroy]
   before_action :all_cards
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /decks
   # GET /decks.json
   def index
-    @decks = Deck.all
+    @decks = Deck.order(updated_at: :desc).page(params[:page]).per(25)
+    @usable_cards = UsableCard.all
   end
 
   # GET /decks/1
@@ -15,7 +17,7 @@ class DecksController < ApplicationController
 
   # GET /decks/new
   def new
-    @deck = Deck.new
+    @deck = current_user.decks.build
     @image_url = 'https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/c/c1/Bg_white.png'
   end
 
@@ -27,7 +29,7 @@ class DecksController < ApplicationController
   # POST /decks
   # POST /decks.json
   def create
-    @deck = Deck.new(deck_params)
+    @deck = current_user.decks.build(deck_params)
 
     respond_to do |format|
       if @deck.save

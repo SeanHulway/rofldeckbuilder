@@ -6,9 +6,15 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    %p.notice= notice
-    %p.alert= alert
-    .ui.container
+  %body.web-bg
+  .ui.container{style: 'background: rgba(255,255,255, 1)'}
+
+    - if flash[:notice]
+      .ui.positive.message= notice
+    - if flash[:alert]
+      .ui.negative.message= alert
+    = render 'layouts/main_nav'
+    .ui.basic.segment
       = yield
 
+    = render 'layouts/footer'

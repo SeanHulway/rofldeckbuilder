@@ -1,0 +1,18 @@
+.ui.grid
+  .five.wide.column
+  .six.wide.column
+    .ui.center.aligned.segment
+      %h2 Log in
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = f.error_notification
+        .ui.form
+          .field
+            .label Email
+            = f.input :email, label: false, required: true, autofocus: true
+          .field
+            .label Password
+            = f.input :password, label: false, required: true, input_html: {autocomplete: "new-password"}
+          .field
+            = f.button :submit, "Sign up", class: 'ui primary button'
+      = render "devise/shared/links"
+  .five.wide.column

@@ -21,7 +21,7 @@
   %table.ui.very.basic.selectable.single.line.table
     %thead
       %tr
-        %th.six.wide 
+        %th.two.wide 
           .ui.small.header Name
         %th 
           .ui.small.header League
@@ -32,24 +32,24 @@
     %tbody
       - @decks.each do |deck|
         %tr.deck-link{"data-link" => "#{deck_path(deck.id)}"}
-          %td.four.wide
+          %td.two.wide
             .deck-name.ui.small.header= deck.name
           %td.right.aligned= league_to_image(deck.tier)
           %td.right.aligned= legion_to_image(deck.legion1)
           %td.right.aligned= legion_to_image(deck.legion2)
           %td.right.aligned
-            %img{src: has_image(deck.card_1), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_2), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_3), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_4), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_5), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_6), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_7), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_8), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_9), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_10), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_11), style: 'max-width: 5%; height: auto;'}
-            %img{src: has_image(deck.card_12), style: 'max-width: 5%; height: auto;'}
+            %img{src: has_image(deck.card_1), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_2), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_3), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_4), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_5), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_6), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_7), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_8), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_9), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_10), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_11), style: 'max-width: 7%; height: auto;'}
+            %img{src: has_image(deck.card_12), style: 'max-width: 7%; height: auto;'}
 
 .ui.basic.center.aligned.segment
   = paginate @decks

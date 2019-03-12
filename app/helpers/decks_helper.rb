@@ -53,7 +53,7 @@ module DecksHelper
   end
 
   def deck_has_legions(deck)
-    if deck.legion1 || deck.legion2 || deck.tier
+    if !deck.legion1.blank? || !deck.legion2.blank? || !deck.tier.blank?
       return legion1 = deck.legion1, legion2 = deck.legion2, league = deck.tier
     end
   end

@@ -1,4 +1,7 @@
 .nested-fields
-  = f.input :name
-  = f.input :description
+  .ui.form
+    .field
+      = f.input :name
+    .field
+      = f.input :description
   = link_to_remove_association "remove task", f

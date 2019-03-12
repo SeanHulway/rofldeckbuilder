@@ -1,5 +1,6 @@
 class UsableCardsController < ApplicationController
   before_action :set_usable_card, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /usable_cards
   # GET /usable_cards.json
@@ -18,11 +19,17 @@ class UsableCardsController < ApplicationController
 
   # GET /usable_cards/new
   def new
+    if !current_user.try(:admin?)
+      redirect_to root_path
+    end
     @usable_card = UsableCard.new
   end
 
   # GET /usable_cards/1/edit
   def edit
+    if !current_user.try(:admin?)
+      redirect_to root_path
+    end
   end
 
   # POST /usable_cards

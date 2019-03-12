@@ -35,7 +35,7 @@ gem 'jquery-rails'
 
 gem 'kaminari'
 
-# gem 'cocoon'
+gem 'cocoon'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

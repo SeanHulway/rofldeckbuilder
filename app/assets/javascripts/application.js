@@ -17,3 +17,4 @@
 //= require jquery_ujs
 //= require_tree .
 //= require semantic-ui
+//= require cocoon

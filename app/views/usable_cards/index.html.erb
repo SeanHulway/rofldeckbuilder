@@ -18,18 +18,10 @@
     <% @usable_cards.each do |usable_card| %>
       <tr>
         <td><%= usable_card.name %></td>
-        <td><%= usable_card.legion %></td>
-        <td><%= usable_card.tier %></td>
-        <td><%= usable_card.card_type %></td>
-        <td><%= usable_card.stage %></td>
         <td><%= link_to 'Show', usable_card %></td>
-        <td><%= link_to 'Edit', edit_usable_card_path(usable_card) %></td>
-        <td><%= link_to 'Destroy', usable_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Usable Card', new_usable_card_path %>

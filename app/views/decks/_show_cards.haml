@@ -1,0 +1,12 @@
+- if !card.blank?
+  = link_to usable_card_path(@usable_cards.find_by(id: card)) do
+    %img.card-image#card-image{src: @usable_cards.find_by(id: card).image_url, style: 'max-width: 95%; height: auto;'}
+    .ui.special.popup
+      .header Abilities
+      - @usable_cards.find_by(id: card).abilities.each do |ability|      
+        .sub.header= ability.name
+        %p= ability.description
+      .header
+      = render 'card_stats', card: card
+- else
+  %img.card-image#card-image{src: image_url, style: 'max-width: 95%; height: auto;'}

@@ -1,7 +1,32 @@
 module DecksHelper
+
+  def legion_to_image(legion)
+    if(legion == 'White')
+      image_tag('Icon_legion_white.png', height: '35px', width: 'auto')
+    elsif(legion == 'Black')
+      image_tag('Icon_legion_black.png', height: '35px', width: 'auto')
+    elsif(legion == 'Green')
+      image_tag('Icon_legion_green.png', height: '35px', width: 'auto')
+    else
+      image_tag('Icon_legion_blue.png', height: '35px', width: 'auto')
+    end
+  end
+
+  def league_to_image(league)
+    if(league == 'Gold')
+      image_tag('Icon_league_gold.png', height: '35px', width: 'auto')
+    elsif(league == 'Silver')
+      image_tag('Icon_league_silver.png', height: '35px', width: 'auto')
+    elsif(league == 'Bronze')
+      image_tag('Icon_league_bronze.png', height: '35px', width: 'auto')
+    else
+      image_tag('Icon_league_stone.png', height: '35px', width: 'auto')
+    end
+  end
+
   def link_to_card(deck)
     unless deck.blank?
-      link_to UsableCard.find_by(id: deck).name, usable_card_path(deck)
+      link_to usable_card_path(deck)
     end
   end
 

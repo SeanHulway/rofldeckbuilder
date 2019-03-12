@@ -3,19 +3,23 @@
     .ui.form
       = simple_form_for @deck, remote: true do |f|
 
-        = f.input :name
         .inline.fields
-          .field
+          .four.wide.field
+            - if !params[:name].blank?
+              = f.input :name, label: "Deck Name", input_html: { id: 'deck-name', value: params[:name]}
+            - else
+              = f.input :name, label: "Deck Name", input_html: { id: 'deck-name'}
+          .four.wide.field
             - if !params[:tier].blank?
               .legion-chosen= f.input :tier, label: "League", collection: ['Stone', 'Bronze', 'Silver', 'Gold'], selected: params[:tier], input_html: { id: 'league', class: 'ui search dropdown'}
             -else
               .legion-chosen= f.input :tier, label: "League", collection: ['Stone', 'Bronze', 'Silver', 'Gold'], input_html: { id: 'league',class: 'ui search dropdown'}
-          .field
+          .four.wide.field
             - if !params[:legion1].blank?
               .legion-chosen= f.input :legion1, label: "Legion 1", collection: ['White', 'Green', 'Black', 'Blue'], selected: params[:legion1], input_html: { id: 'legion1', class: 'ui search dropdown'}
             - else
               .legion-chosen= f.input :legion1, label: "Legion 1", collection: ['White', 'Green', 'Black', 'Blue'], input_html: { id: 'legion1', class: 'ui search dropdown'}
-          .field
+          .four.wide.field
             - if !params[:legion2].blank?
               .legion-chosen= f.input :legion2, label: "Legion 2", collection: ['White', 'Green', 'Black', 'Blue'], selected: params[:legion2], input_html: { id: 'legion2', class: 'ui search dropdown'}
             - else
@@ -70,19 +74,20 @@
       var legionChoice1 = $('#legion1').find(":selected").val();
       var legionChoice2 = $('#legion2').find(":selected").val();
       var leagueChoice = $('#league').find(":selected").val();
+      var deckName = $("#deck-name").val();
 
-      changeCardChoices(legionChoice1, legionChoice2, leagueChoice);
+      changeCardChoices(legionChoice1, legionChoice2, leagueChoice, deckName);
     });
 
   });
 
-  function changeCardChoices(legionChoice1, legionChoice2, leagueChoice){
+  function changeCardChoices(legionChoice1, legionChoice2, leagueChoice, deckName){
 
     var id = "#{@deck.id}"
-    var url = '../' + id + '/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice
+    var url = '../' + id + '/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice + "&name=" + deckName
 
     if(window.location.href.indexOf("new") > -1){
-      url = 'decks/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice
+      url = 'decks/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice + "&name=" + deckName
     }
  
     $.ajax({
@@ -96,7 +101,6 @@
   function changeImage(thisCard){
     $( thisCard).each(function() {
       var cardChoice = $(this).find(":selected").val();
-      console.log(cardChoice)
 
       if(cardChoice == ''){
         var cardImage = $(this).next();

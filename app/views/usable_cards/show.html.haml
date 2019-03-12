@@ -1,45 +1,96 @@
-%p#notice= notice
+:css
+  .header-row{
 
-%p
-  %strong Name:
-  = @usable_card.name
-%p
-  %strong Legion:
-  = @usable_card.legion
-%p
-  %strong League:
-  = @usable_card.tier
-%p
-  %strong Type:
-  = @usable_card.card_type
-%p
-  %strong Stage:
-  = @usable_card.stage
-%p
-  %strong Cooldown:
-  = @usable_card.cooldown
-%p
-  %strong Cost:
-  = @usable_card.cost
-%p
-  %strong Squad Size:
-  = @usable_card.squad_size
-%p
-  %strong Health:
-  = @usable_card.health
-%p
-  %strong Armor:
-  = @usable_card.armor
-%p
-  %strong Range:
-  = @usable_card.range
-%p
-  %strong Damage:
-  = @usable_card.damage
-%p
-  %strong Attack Speed:
-  = @usable_card.attack_speed
-
-= link_to 'Edit', edit_usable_card_path(@usable_card)
-
-= link_to 'Back', usable_cards_path
+  }
+  .card-info{
+    text-align: center;
+    border-style: outset;
+    border-color: #314249;
+    border-width: 1px;
+  }
+  .card-ability{
+    border-style: outset;
+    border-color: #314249;
+    border-width: 1px 1px 1px 0px;
+  }
+  .card-stats{
+    margin-left: 5px;
+  }
+- if current_user.try(:admin?)
+  = link_to 'Edit', edit_usable_card_path(@usable_card), class: 'ui primary right floated button'
+.ui.basic.segment
+  .ui.two.column.centered.grid
+    .four.wide.column.card-info
+      .row.header-row
+        .ui.horizontal.list
+          .item{style: 'margin-top 5px'}
+            = legion_to_image(@usable_card.legion)
+          .item
+            .ui.header= @usable_card.name
+          .item
+            = league_to_image(@usable_card.tier)
+      .row
+        %img.card-image#card-image{src: @usable_card.image_url, style: 'max-width: 75%; height: auto;'}
+      .card-stats
+        %table
+          %tbody
+            %tr
+              %td
+                .header-stat Type:
+              %td
+                .card-stat.card-type= @usable_card.card_type
+            %tr
+              %td
+                .header-stat Base League:
+              %td
+                .card-stat.card-league= @usable_card.tier
+            %tr
+              %td
+                .header-stat Stage:
+              %td
+                .card-stat.card-stage= @usable_card.stage
+            %tr
+              %td
+                .header-stat Cost:
+              %td
+                .card-stat.card-cost= @usable_card.cost
+            %tr
+              %td
+                .header-stat Squad Size:
+              %td
+                .card-stat.card-squad-size= @usable_card.squad_size
+            %tr
+              %td
+                .header-stat Cooldown:
+              %td
+                .card-stat.card-cooldown= @usable_card.cooldown
+            %tr
+              %td
+                .header-stat Health:
+              %td
+                .card-stat.card-health= @usable_card.health
+            %tr
+              %td
+                .header-stat Armor:
+              %td
+                .card-stat.card-armor= @usable_card.armor
+            %tr
+              %td
+                .header-stat Range:
+              %td
+                .card-stat.card-range= @usable_card.range
+            %tr
+              %td
+                .header-stat Damage:
+              %td
+                .card-stat.card-damage= @usable_card.damage
+            %tr
+              %td
+                .header-stat Attack Speed:
+              %td
+                .card-stat.card-attack-speed= @usable_card.attack_speed
+    .column.card-ability
+      .ui.large.header Abilities
+      - @usable_card.abilities.each do |ability|      
+        .ui.header= ability.name
+        %p= ability.description

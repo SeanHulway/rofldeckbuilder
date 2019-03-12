@@ -6,7 +6,7 @@ class DecksController < ApplicationController
   # GET /decks
   # GET /decks.json
   def index
-    @decks = Deck.order(updated_at: :desc).page(params[:page]).per(25)
+    @decks = Deck.order(updated_at: :desc).search(params[:legion1], params[:legion2], params[:league]).page(params[:page]).per(10)
     @usable_cards = UsableCard.all
   end
 
@@ -23,6 +23,9 @@ class DecksController < ApplicationController
 
   # GET /decks/1/edit
   def edit
+    if current_user != Deck.find(params[:id]).user
+      redirect_to root_path
+    end
     @image_url = 'https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/c/c1/Bg_white.png'
   end
 

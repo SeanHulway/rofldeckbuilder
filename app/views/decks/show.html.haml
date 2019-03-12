@@ -1,37 +1,91 @@
-%p#notice= notice
-%p
-  %strong Created by:
-  = @deck.user.username
-%p
-  %strong Legion1:
-  = @deck.legion1
-%p
-  %strong Legion2:
-  = @deck.legion2
-%p
-  %strong Tier:
-  = @deck.tier
-%p
-  %strong Description:
+:css
+  .card{
+    text-align: center;
+    display: block;
+    padding: 10px;
+  }
+  .card:hover{
+    cursor: pointer;
+  }
+  .outline{
+    border-style: outset;
+    border-color: #314249;
+    border-width: 9px;
+    background: rgba(48,73,78,.1);
+  }
+
+- if current_user == Deck.find(params[:id]).user
+  = link_to 'Edit', edit_deck_path(@deck), class: 'ui primary right floated button'
+.ui.grid
+  .eight.wide.column
+    .row
+      .ui.horizontal.list.card-info
+        .item
+          .ui.large.header= @deck.name
+          .sub.header= link_to @deck.user.username, user_path(@deck.user)
+        .item
+          .right.floated.content
+            = legion_to_image(@deck.legion1)
+            = legion_to_image(@deck.legion2)
+            = league_to_image(@deck.tier)
+  .twelve.wide.column
+.ui.basic.segment
+  .outline
+    .ui.stackable.column.grid
+      .six.column.row
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_1
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_2
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_3
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_4
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_5
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_6
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_7
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_8
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_9
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_10
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_11
+        .column
+          .card
+            = render 'show_cards', card: @deck.card_12
+
+  .ui.header Description:
   = @deck.description
-%p
-  %strong Cards:
-
-  = link_to_card(@deck.card_1)
-  = link_to_card(@deck.card_2)
-  = link_to_card(@deck.card_3)
-  = link_to_card(@deck.card_4)
-  = link_to_card(@deck.card_5)
-  = link_to_card(@deck.card_6)
-  = link_to_card(@deck.card_7)
-  = link_to_card(@deck.card_8)
-  = link_to_card(@deck.card_9)
-  = link_to_card(@deck.card_10)
-  = link_to_card(@deck.card_11)
-  = link_to_card(@deck.card_12)
 
 
+:javascript
+  var resizePopup = function(){$('.ui.popup').css('max-height', $(window).height());};
 
-= link_to 'Edit', edit_deck_path(@deck)
-|
-= link_to 'Back', decks_path
+  $(window).resize(function(e){
+      resizePopup();
+  });
+
+  $('.card-image')
+  .popup({
+    inline: true,
+    lastResort: 'right center',
+    onShow: function(){
+        resizePopup();
+    },
+  });

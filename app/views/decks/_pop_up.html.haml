@@ -1,5 +1,23 @@
+:css
+  .card-image{
+    position: relative;
+    width: 100%;
+    hieght: auto;
+  }
+  .top{
+    position: absolute;
+
+  }
+  .bottom{
+
+  }
 - if !card.blank?
-  %img.card-image#card-image{src: @usable_cards.find_by(id: card).image_url, style: 'max-width: 75%; height: auto;'}
+  .card-image
+    - if @usable_cards.find_by(id: card).card_type == 'Spawner'
+      %img.top.card-image#card-image{src: @usable_cards.find_by(id: card).image_url, style: 'max-width: 85%; height: auto;'}
+      %img.bottom{src: "https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/3/3c/Bg_spawner.png", style: 'max-width: 85%; height: auto;'}
+    -else
+      %img.card-image#card-image{src: @usable_cards.find_by(id: card).image_url, style: 'max-width: 85%; height: auto;'}
   .ui.special.popup
     .header Abilities
     - @usable_cards.find_by(id: card).abilities.each do |ability|      
@@ -8,7 +26,7 @@
     .header
     = render 'card_stats', card: card
 - else
-  %img.card-image#card-image{src: image_url, style: 'max-width: 75%; height: auto;'}
+  %img.card-image#card-image{src: image_url, style: 'max-width: 85%; height: auto;'}
   .ui.special.popup
     .header Skills
     = render 'card_stats', card: card

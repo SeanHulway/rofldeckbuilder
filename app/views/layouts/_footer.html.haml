@@ -1,7 +1,28 @@
+:css
+  .footer-terms{
+    font-size: 12px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+  }
 .ui.divider
 .ui.basic.center.aligned.segment
-  .ui.celled.horizontal.list
-    = link_to 'Wiki', 'https://riseoflegions.gamepedia.com/Rise_of_Legions_Wiki', class: 'item'
-    = link_to 'Steam Store', 'https://store.steampowered.com/app/748940/Rise_of_Legions/', class: 'item'
-    = link_to 'Rise of Legions', 'http://riseoflegions.com/', class: 'item'
-    = link_to 'Broken Games UG', 'http://brokengames.de/', class: 'item'
+  .row
+    .footer-terms
+      Disclaimer: rofldb is a community run website and is in no way affiliated with Rise of Legions or Broken Games UG
+  .row
+    .footer-terms
+      Do you wish to support rolfdb and keep it up and running feel free to donate:
+      = link_to 'Here', 'https://donorbox.org/support-rofldb'
+  %br
+  .row
+    .ui.celled.horizontal.list
+      = link_to 'Wiki', 'https://riseoflegions.gamepedia.com/Rise_of_Legions_Wiki', class: 'item'
+      = link_to 'Steam Store', 'https://store.steampowered.com/app/748940/Rise_of_Legions/', class: 'item'
+      = link_to 'Rise of Legions', 'http://riseoflegions.com/', class: 'item'
+      = link_to 'Broken Games UG', 'http://brokengames.de/', class: 'item'

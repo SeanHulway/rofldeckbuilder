@@ -114,7 +114,10 @@
     var cardStats = thisCard.parent().parent().find('.card-stats');
     var cardChoice = thisCard.find(":selected").val();
 
-    var cardImage = thisCard.next();
+    var cardImage = thisCard.next().next().find('#card-image');
+    var cardBackground = thisCard.next().next().find('.bottom');
+
+    console.log(cardImage)
 
     thisStat = thisCard.parent().parent()
 
@@ -156,6 +159,23 @@
         var data = data;
 
         $(cardImage).attr("src", data.image_url);
+        if(data.card_type == "Spawner"){
+          $(cardBackground).attr("src", 'https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/3/3c/Bg_spawner.png');
+        }else{
+          if(data.legion == "White"){
+            $(cardBackground).attr("src", 'https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/c/c1/Bg_white.png');
+          }
+          if(data.legion == "Green"){
+            $(cardBackground).attr("src", 'https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/1/10/Bg_green.png');
+          }
+          if(data.legion == "Black"){
+            $(cardBackground).attr("src", 'https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/2/24/Bg_black.png');
+          }
+          if(data.legion == "Blue"){
+            $(cardBackground).attr("src", 'https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/2/25/Bg_blue.png');
+          }
+        }
+
         $(cardLegion).html(data.legion);
         $(cardType).html(data.card_type);
         $(cardLeague).html(data.tier);

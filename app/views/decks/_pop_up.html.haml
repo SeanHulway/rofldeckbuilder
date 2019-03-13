@@ -9,15 +9,24 @@
 
   }
   .bottom{
-
+    max-width: 85%;
+    height: auto;
   }
 - if !card.blank?
   .card-image
     - if @usable_cards.find_by(id: card).card_type == 'Spawner'
       %img.top.card-image#card-image{src: @usable_cards.find_by(id: card).image_url, style: 'max-width: 85%; height: auto;'}
-      %img.bottom{src: "https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/3/3c/Bg_spawner.png", style: 'max-width: 85%; height: auto;'}
+      %img.bottom{src: "https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/3/3c/Bg_spawner.png"}
     -else
-      %img.card-image#card-image{src: @usable_cards.find_by(id: card).image_url, style: 'max-width: 85%; height: auto;'}
+      %img.top.card-image#card-image{src: @usable_cards.find_by(id: card).image_url, style: 'max-width: 85%; height: auto;'}
+      - if @usable_cards.find_by(id: card).legion == 'White'
+        %img.bottom{src: "https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/c/c1/Bg_white.png"}
+      - if @usable_cards.find_by(id: card).legion == 'Green'
+        %img.bottom{src: "https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/1/10/Bg_green.png"}
+      - if @usable_cards.find_by(id: card).legion == 'Black'
+        %img.bottom{src: "https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/2/24/Bg_black.png"}
+      - if @usable_cards.find_by(id: card).legion == 'Blue'
+        %img.bottom{src: "https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/2/25/Bg_blue.png"}
   .ui.special.popup
     .header Abilities
     - @usable_cards.find_by(id: card).abilities.each do |ability|      

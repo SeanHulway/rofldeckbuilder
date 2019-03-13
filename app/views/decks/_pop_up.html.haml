@@ -35,7 +35,9 @@
     .header
     = render 'card_stats', card: card
 - else
-  %img.card-image#card-image{src: image_url, style: 'max-width: 85%; height: auto;'}
+  .card-image
+    %img.top.card-image#card-image{src: image_url, style: 'max-width: 85%; height: auto;'}
+    %img.bottom{src: image_url}
   .ui.special.popup
     .header Skills
     = render 'card_stats', card: card

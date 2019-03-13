@@ -22,7 +22,9 @@
       .ui.horizontal.list.card-info
         .item
           .ui.large.header= @deck.name
-          .sub.header= link_to @deck.user.username, user_path(@deck.user)
+          .sub.header
+            Created by:
+            = link_to @deck.user.username, user_path(@deck.user)
         .item
           .right.floated.content
             = legion_to_image(@deck.legion1)

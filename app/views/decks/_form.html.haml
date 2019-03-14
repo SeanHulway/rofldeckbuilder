@@ -83,13 +83,25 @@
 
   function changeCardChoices(legionChoice1, legionChoice2, leagueChoice, deckName){
 
+    var card1 = $("#card1").val();
+    var card2 = $("#card2").val();
+    var card3 = $("#card3").val();
+    var card4 = $("#card4").val();
+    var card5 = $("#card5").val();
+    var card6 = $("#card6").val();
+    var card7 = $("#card7").val();
+    var card8 = $("#card8").val();
+    var card9 = $("#card9").val();
+    var card10 = $("#card10").val();
+    var card11 = $("#card11").val();
+    var card12 = $("#card12").val();
+
     var id = "#{@deck.id}"
-    var url = '../' + id + '/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice + "&name=" + deckName
+    var url = '../' + id + '/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice + "&name=" + deckName + "&card1=" + card1 + "&card2=" + card2 + "&card3=" + card3 + "&card4=" + card4 + "&card5=" + card5 + "&card6=" + card6 + "&card7=" + card7 + "&card8=" + card8 + "&card9=" + card9 + "&card10=" + card10 + "&card11=" + card11 + "&card12=" + card12
 
     if(window.location.href.indexOf("new") > -1){
-      url = 'decks/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice + "&name=" + deckName
+      url = 'decks/refresh_cards/' + "?legion1=" + legionChoice1 + "&legion2=" + legionChoice2 + "&tier=" + leagueChoice + "&name=" + deckName + "&card1=" + card1 + "&card2=" + card2 + "&card3=" + card3 + "&card4=" + card4 + "&card5=" + card5 + "&card6=" + card6 + "&card7=" + card7 + "&card8=" + card8 + "&card9=" + card9 + "&card10=" + card10 + "&card11=" + card11 + "&card12=" + card12
     }
- 
     $.ajax({
       url: url,
       success:function(){

@@ -54,9 +54,7 @@ module DecksHelper
 
   def card_type(card)
     unless card.blank?
-      if @usable_cards.find_by(id: card).card_type == 'Spawner'
-        return true
-      end
+      return @usable_cards.find_by(id: card).card_type
     end
     false
   end

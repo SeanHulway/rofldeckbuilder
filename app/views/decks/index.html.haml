@@ -60,12 +60,24 @@
           %td.right.aligned
             .cards
               - cards_array(deck).each do |card|
-                - if card_type(card)
-                  .card{style: 'order: 1; margin: 0px 2px 0px 2px'}
+                - if card_type(card) == 'Spawner'
+                  .card{style: 'order: 3; margin: 0px 2px 0px 2px'}
                     .card-image
                       .spawner
                         %img.top{src: has_image(card), style: 'max-width: 100%; height: auto;'}
                         %img.bottom{src: "https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/3/3c/Bg_spawner.png?version=8cd38f621cd63bde87fffe78d6c55a43", style: 'max-width: 100%; height: auto;'}
+                - elsif card_type(card) == 'Spell'
+                  .card{style: 'order: 2;'}
+                    .card-image
+                      .spell
+                        %img{src: has_image(card), style: 'max-width: 100%; height: auto;'}
+
+                - elsif card_type(card) == 'Building'
+                  .card{style: 'order: 1;'}
+                    .card-image
+                      .building
+                        %img{src: has_image(card), style: 'max-width: 100%; height: auto;'}
+
                 - else
                   .card
                     .card-image

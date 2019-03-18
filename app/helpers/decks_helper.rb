@@ -52,6 +52,15 @@ module DecksHelper
     end
   end
 
+  def card_type(card)
+    unless card.blank?
+      if @usable_cards.find_by(id: card).card_type == 'Spawner'
+        return true
+      end
+    end
+    false
+  end
+
   def deck_has_legions(deck)
     if !deck.legion1.blank? || !deck.legion2.blank? || !deck.tier.blank?
       return legion1 = deck.legion1, legion2 = deck.legion2, league = deck.tier
@@ -68,5 +77,9 @@ module DecksHelper
 
   def image_url
     @image_url = 'https://gamepedia.cursecdn.com/riseoflegions_gamepedia_en/c/c1/Bg_white.png'
+  end
+
+  def cards_array(deck)
+    [deck.card_1, deck.card_2, deck.card_3, deck.card_4, deck.card_5, deck.card_6, deck.card_7, deck.card_8, deck.card_9, deck.card_10, deck.card_11, deck.card_12]
   end
 end

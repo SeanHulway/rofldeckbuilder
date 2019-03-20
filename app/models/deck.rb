@@ -1,4 +1,5 @@
 class Deck < ApplicationRecord
+  acts_as_votable
   belongs_to :user
 
   def self.search(legion1, legion2, league)

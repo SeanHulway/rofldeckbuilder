@@ -1,5 +1,5 @@
 class DecksController < ApplicationController
-  before_action :set_deck, only: [:show, :edit, :update, :destroy]
+  before_action :set_deck, only: [:show, :edit, :update, :destroy, :upvote]
   before_action :all_cards
   before_action :authenticate_user!, except: [:index, :show]
 
@@ -67,6 +67,11 @@ class DecksController < ApplicationController
       format.html { redirect_to decks_url, notice: 'Deck was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def upvote
+    @deck.upvote_from current_user
+    redirect_to deck_path(@deck)
   end
 
   def find_card_id_by_name(name)

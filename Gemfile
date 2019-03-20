@@ -37,6 +37,8 @@ gem 'kaminari'
 
 gem 'cocoon'
 
+gem 'acts_as_votable', '~> 0.12.0'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

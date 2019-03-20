@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :usable_cards
-  resources :decks
+
+  resources :decks do
+    member do
+      put 'like', to: 'decks#upvote'
+    end
+  end
 
   resources :users
   get 'users/:id' => 'users#show'

@@ -19,61 +19,41 @@
   = link_to 'Edit', edit_deck_path(@deck), class: 'ui primary right floated button'
 
 
-
 .ui.grid
   .eight.wide.column
     .row
-      .ui.list.card-info
+      .ui.list
         .item
-          .ui.large.header= @deck.name
-          .sub.header
-            Created by:
-            = link_to @deck.user.username, user_path(@deck.user)
+          .ui.horizontal.list
+            .item
+              .ui.large.header= @deck.name
+              .sub.header
+                Created by:
+                = link_to @deck.user.username, user_path(@deck.user)
+            .item
+              .top.aligned.content
+                .ui.labeled.button
+                  = link_to like_deck_path(@deck), method: :put, class: 'ui green icon button' do
+                    %i.angle.double.up.icon.large
+                  .ui.basic.green.left.pointing.label
+                    = @deck.get_upvotes.size
+
         .item
           = legion_to_image(@deck.legion1)
           = legion_to_image(@deck.legion2)
           = league_to_image(@deck.tier)
+
   .twelve.wide.column
+
 .ui.basic.segment
   .outline
     .ui.stackable.column.grid
       .six.column.row
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_1
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_2
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_3
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_4
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_5
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_6
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_7
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_8
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_9
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_10
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_11
-        .column
-          .card
-            = render 'show_cards', card: @deck.card_12
+        - cards_array(@deck).each do |card|
+          .column
+            .card
+              = render 'show_cards', card: card
+      
 
   .ui.header Description:
   = @deck.description

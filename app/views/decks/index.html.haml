@@ -53,7 +53,8 @@
       - @decks.each do |deck|
         %tr.deck-link{"data-link" => "#{deck_path(deck.id)}"}
           %td.two.wide
-            .deck-name.ui.small.header= deck.name
+            %i.angle.double.up.green.icon{style: 'display: inline'}= deck.get_upvotes.size
+            .deck-name.ui.small.header{style: 'display: inline'}= deck.name
           %td.right.aligned= league_to_image(deck.tier)
           %td.right.aligned= legion_to_image(deck.legion1)
           %td.right.aligned= legion_to_image(deck.legion2)

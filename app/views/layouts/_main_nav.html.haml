@@ -3,6 +3,7 @@
 .ui.secondary.pointing.large.menu{style: 'margin-top: 0; padding-top: 0;'}
 
   = link_to 'Home', root_path, class: 'item'
+  = link_to 'Cards', usable_cards_path, class: 'item'
 
   .right.menu
     - if user_signed_in?

@@ -49,11 +49,14 @@
           .ui.small.header Legion
         %th 
           .ui.small.header Legion
+
     %tbody
       - @decks.each do |deck|
         %tr.deck-link{"data-link" => "#{deck_path(deck.id)}"}
           %td.two.wide
             %i.angle.double.up.green.icon{style: 'display: inline'}= deck.get_upvotes.size
+            - if deck.updated_at <= Time.at(1567199990)
+              .deck-date.ui.small.header{style: 'display: inline; color: blue'} BETA
             .deck-name.ui.small.header{style: 'display: inline'}= deck.name
           %td.right.aligned= league_to_image(deck.tier)
           %td.right.aligned= legion_to_image(deck.legion1)

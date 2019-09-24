@@ -37,6 +37,11 @@
                     %i.angle.double.up.icon.large
                   .ui.basic.green.left.pointing.label
                     = @deck.get_upvotes.size
+          .item
+            - if @deck.updated_at <= Time.at(1567199990)
+              .ui.small.header{style: 'color: blue'} BETA
+            - else
+              .ui.small.header= @deck.created_at.strftime("%m/%d/%Y")
 
         .item
           = legion_to_image(@deck.legion1)

@@ -9,6 +9,10 @@ class UsableCardsController < ApplicationController
       @usable_cards = UsableCard.where("(legion = ? OR legion = ?) AND tier = ?", params[:legion1], params[:legion2], params[:tier])
     else
       @usable_cards = UsableCard.all
+      @white_cards = UsableCard.where("legion = ?", 'White').order(:name)
+      @black_cards = UsableCard.where("legion = ?", 'Black').order(:name)
+      @green_cards = UsableCard.where("legion = ?", 'Green').order(:name)
+      @blue_cards = UsableCard.where("legion = ?", 'Blue').order(:name)
     end
   end
 

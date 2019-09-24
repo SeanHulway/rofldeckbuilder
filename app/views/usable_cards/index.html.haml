@@ -13,13 +13,12 @@
             %th Type
             
         %tbody
-          - @usable_cards.each do |usable_card|
-            - if usable_card.legion == 'White'
-              %tr
-                %td= usable_card.name
-                %td= usable_card.tier
-                %td= usable_card.card_type
-                %td= link_to 'View', usable_card
+          - @white_cards.each do |usable_card|
+            %tr
+              %td= usable_card.name
+              %td= usable_card.tier
+              %td= usable_card.card_type
+              %td= link_to 'View', usable_card
     .column
       %h2 Black
       %table.ui.very.basic.table
@@ -30,13 +29,12 @@
             %th Type
             
         %tbody
-          - @usable_cards.each do |usable_card|
-            - if usable_card.legion == 'Black'
-              %tr
-                %td= usable_card.name
-                %td= usable_card.tier
-                %td= usable_card.card_type
-                %td= link_to 'View', usable_card
+          - @black_cards.each do |usable_card|
+            %tr
+              %td= usable_card.name
+              %td= usable_card.tier
+              %td= usable_card.card_type
+              %td= link_to 'View', usable_card
     .column
       %h2 Green
       %table.ui.very.basic.table
@@ -47,13 +45,12 @@
             %th Type
             
         %tbody
-          - @usable_cards.each do |usable_card|
-            - if usable_card.legion == 'Green'
-              %tr
-                %td= usable_card.name
-                %td= usable_card.tier
-                %td= usable_card.card_type
-                %td= link_to 'View', usable_card
+          - @green_cards.each do |usable_card|
+            %tr
+              %td= usable_card.name
+              %td= usable_card.tier
+              %td= usable_card.card_type
+              %td= link_to 'View', usable_card
     .column
       %h2 Blue
       %table.ui.very.basic.table
@@ -64,11 +61,10 @@
             %th Type
             
         %tbody
-          - @usable_cards.each do |usable_card|
-            - if usable_card.legion == 'Blue'
-              %tr
-                %td= usable_card.name
-                %td= usable_card.tier
-                %td= usable_card.card_type
-                %td= link_to 'View', usable_card
+          - @blue_cards.each do |usable_card|
+            %tr
+              %td= usable_card.name
+              %td= usable_card.tier
+              %td= usable_card.card_type
+              %td= link_to 'View', usable_card
 

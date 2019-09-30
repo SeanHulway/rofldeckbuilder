@@ -37,13 +37,13 @@ module DecksHelper
   def card_selection(deck, legion1 = {}, legion2 = {}, league = {})
     if !legion1.blank? || !legion2.blank? || !league.blank?
       if league == 'Stone'
-        @usable_cards.where("(legion = ? OR legion = ?) AND tier = ?", legion1, legion2, league).order(:name)
+        @usable_cards.where("(legion = ? OR legion = ? OR legion = ?) AND tier = ?", legion1, legion2, 'Crystal', league).order(:name)
       elsif league == 'Bronze'
-        @usable_cards.where("(legion = ? OR legion = ?) AND (tier = ? OR tier = 'Stone')", legion1, legion2, league).order(:name)
+        @usable_cards.where("(legion = ? OR legion = ? OR legion = ?) AND (tier = ? OR tier = 'Stone')", legion1, legion2, 'Crystal', league).order(:name)
       elsif league == 'Silver'
-        @usable_cards.where("(legion = ? OR legion = ?) AND (tier = ? OR tier = 'Stone' OR tier = 'Bronze')", legion1, legion2, league).order(:name)
+        @usable_cards.where("(legion = ? OR legion = ? OR legion = ?) AND (tier = ? OR tier = 'Stone' OR tier = 'Bronze')", legion1, legion2, 'Crystal', league).order(:name)
       elsif league == 'Gold'
-        @usable_cards.where("(legion = ? OR legion = ?) AND (tier = ? OR tier = 'Stone' OR tier = 'Bronze' OR tier = 'Silver')", legion1, legion2, league).order(:name)
+        @usable_cards.where("(legion = ? OR legion = ? OR legion = ?) AND (tier = ? OR tier = 'Stone' OR tier = 'Bronze' OR tier = 'Silver')", legion1, legion2, 'Crystal', league).order(:name)
       end
     elsif deck_has_legions(deck)
       card_selection(deck, deck_has_legions(deck)[0], deck_has_legions(deck)[1], deck_has_legions(deck)[2])
